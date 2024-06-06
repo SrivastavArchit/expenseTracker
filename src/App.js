@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Signup from './pages/Signup/Signup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   return (
     <div className="App">
@@ -12,7 +13,6 @@ function App() {
      <Routes>
       <Route path='/dashboard' element={<Dashboard/>}/>
       <Route path='/' element={<Signup/>}/>
-
 
      </Routes>
     </div>
