@@ -1,0 +1,19 @@
+.btn button{
+    width: 90%;
+    position: relative;
+    border: none;
+    height: 2.5rem;
+    border-radius: .3rem;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    color: rgb(46, 107, 239);
+    border: 2px solid rgb(40, 108, 254);
+   
+    margin-bottom: 1rem;
+}
+
+.blue button{
+    background-color: rgb(82, 146, 255);
+    color: white;
+    border: none;
+}

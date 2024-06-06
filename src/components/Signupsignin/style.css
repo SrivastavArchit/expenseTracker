@@ -1,0 +1,15 @@
+.signup-wrap{
+    width: 40vw;
+    height: auto;
+ 
+   box-shadow: 2px 2px 2px 2px var(--shadow);
+   margin-top: 1rem;
+}
+.signup-wrap{
+}
+.or{
+    margin-top: -.3rem;
+   cursor: pointer;
+   font-size: .9rem;
+   color: grey;
+}

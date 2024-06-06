@@ -1,0 +1,31 @@
+.input-wrapper{
+    width: 100%;
+}
+.form{
+   
+    float: left;
+}
+input{
+    margin-left: 1rem;
+    width: 37vw;
+    border: none;
+    border-bottom: 2px solid rgb(198, 196, 196);
+    height: 2rem;
+    padding: .1rem .2rem;
+    margin-bottom: .9rem;
+    border-radius: .4rem;
+}
+input:focus{
+    outline: none;
+}
+input::placeholder{
+    color: grey;
+}
+.input-label{
+text-align: left;
+margin-left: 1rem;
+margin-top: .8rem;
+font-size: 1rem;
+font-weight: 500;
+}
+
