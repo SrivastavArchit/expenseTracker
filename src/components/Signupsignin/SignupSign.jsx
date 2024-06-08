@@ -85,6 +85,7 @@ const SignupSign = () => {
           name,
           email,
           uid: user.uid,
+          photoURL:user.photoURL ? user.photoURL : ""
         });
         toast.success('User document created');
       }
