@@ -11,7 +11,7 @@ body {
   --theme :rgb(76, 76, 223);
   --black : rgb(77, 75, 75);
   --white : rgb(255, 245, 245);
-  --shadow : rgb(198, 198, 198);
+  --shadow : rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;;
 }
 
 input{

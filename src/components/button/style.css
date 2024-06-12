@@ -8,12 +8,17 @@
     cursor: pointer;
     color: rgb(46, 107, 239);
     border: 2px solid rgb(40, 108, 254);
-   
+     
+  font-family: "Montserrat", sans-serif;
     margin-bottom: 1rem;
+    font-size: .9rem;
+}
+.ant-card-body{
+    margin: 0;
 }
 
 .blue button{
-    background-color: rgb(82, 146, 255);
+    background-color:#2970FF;
     color: white;
     border: none;
 }
