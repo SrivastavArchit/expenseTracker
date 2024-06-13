@@ -3,7 +3,8 @@ import Header from '../../components/Header/Header';
 import Cards from '../../components/cards/Cards';
 import AddIncomeModal from "../../components/Modals/Addincome";
 import AddExpenseModal from '../../components/Modals/Addexpense';
-import { addDoc, collection, query, getDocs ,doc,setDoc,getDoc} from "firebase/firestore";
+import {getFirestore, addDoc, collection, query, getDocs ,doc,setDoc,getDoc,writeBatch} from "firebase/firestore";
+
 import moment from 'moment';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '../../firebase';
@@ -132,30 +133,32 @@ const Dashboard = () => {
   const sortedchart = transactions.sort((a, b) => {
     return new Date(a.date) - new Date(b.date);
   });
-  const resetBalance = async () => {
-    try {
-      if (user) {
-        const q = query(collection(db, `users/${user.uid}/transactions`));
-        const querySnapshot = await getDocs(q);
-        const batch = db.batch();
-        
-        querySnapshot.docs.forEach((doc) => {
-          batch.delete(doc.ref);
-        });
 
-        await batch.commit();
-        setTransactions([]);
-        setIncome(0);
-        setExpenses(0);
-        setCurrentBalance(0);
-        toast.success("Balance Reset Successfully!");
-      }
-    } catch (e) {
-      console.error("Error resetting balance: ", e);
-      toast.error("Couldn't reset balance");
+  
+const resetBalance = async () => {
+  try {
+    if (user) {
+      const firestore = getFirestore(); // Get Firestore instance
+      const q = query(collection(firestore, `users/${user.uid}/transactions`));
+      const querySnapshot = await getDocs(q);
+      const batch = writeBatch(firestore); // Correct way to create a batch
+
+      querySnapshot.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+
+      await batch.commit(); // Commit the batch
+      setTransactions([]);
+      setIncome(0);
+      setExpenses(0);
+      setCurrentBalance(0);
+      toast.success("Balance Reset Successfully!");
     }
-  };
-
+  } catch (e) {
+    console.error("Error resetting balance: ", e);
+    toast.error("Couldn't reset balance");
+  }
+};
 
   return (
     <div className='dash-wrap'>
