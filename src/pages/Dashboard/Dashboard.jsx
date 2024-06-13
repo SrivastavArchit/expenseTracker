@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 import TransactionTable from '../../components/TransactionTable/TransactionTable';
 import BudgetTracker from '../../components/BudgetTracker/BudgetTracker';
 import Charts from '../../components/Charts/Charts';
-
+import "./style.css"
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
@@ -158,7 +158,7 @@ const Dashboard = () => {
 
 
   return (
-    <div>
+    <div className='dash-wrap'>
       <div style={{marginBottom:"5rem"}}>
       <Header />
       </div>

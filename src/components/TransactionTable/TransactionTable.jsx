@@ -1,6 +1,6 @@
 import { Radio, Select, Table } from 'antd';
 import { Option } from 'antd/es/mentions';
-
+import "./style.css"
 import React, { useState } from 'react'
 
 
@@ -60,9 +60,9 @@ const TransactionTable = ({transaction}) => {
       }));
   return (
     <div>
-        <input  value={search}
+        <input className='search-bar'  value={search}
         onChange={(e) => setsearch(e.target.value)}
-        placeholder='search here'
+        placeholder='Search by Name'
         />
         <h2>My Transactions</h2>
          <Select
@@ -86,7 +86,7 @@ const TransactionTable = ({transaction}) => {
             <Radio.Button value="name">Sort by Name</Radio.Button>
             <Radio.Button value="amount">Sort by Amount</Radio.Button>
           </Radio.Group>
-      <Table dataSource={dataSource } columns={columns} />;
+      <Table className='table' dataSource={dataSource } columns={columns} />;
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { Line, Pie } from '@ant-design/charts';
 import React from 'react';
-
+import "./style.css"
+import { Card } from 'antd';
 const Charts = ({ sortedchart }) => {
   // Prepare data for the Line chart
   const lineChartData = sortedchart.map((item) => ({
@@ -72,18 +73,23 @@ interactions: [{ type: 'element-active' }],
   let chart;
 
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ width: "50%" }}>
+    <div style={{ display: "flex" }} className='chart-wrap'>
+      <div className='chart-div'>
+        <Card className='chart-card' >
         <h2>Your Transactions Over Time</h2>
         <Line {...lineChartConfig} onReady={(chartInstance) => (chart = chartInstance)} />;
+        </Card>
       </div>
-      <div style={{ width: "50%" }}>
+
+      <div className='chart-div'>
+        <Card className='chart-card'>
         <h2>Your Spending by Category</h2>
         {spendingData.length === 0 ? (
           <p>Seems like you haven't spent anything yet...</p>
         ) : (
           <Pie {...pieChartConfig} />
         )}
+        </Card>
       </div>
     </div>
   );

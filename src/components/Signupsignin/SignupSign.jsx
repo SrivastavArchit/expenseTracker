@@ -148,7 +148,7 @@ const SignupSign = () => {
               label="Email"
               state={email}
               setState={setEmail}
-              placeholder="archit@gmail.com"
+              placeholder="example@gmail.com"
             />
             <Input
               className="inputbox"
@@ -156,7 +156,7 @@ const SignupSign = () => {
               label="Password"
               state={password}
               setState={setPassword}
-              placeholder="12345"
+              placeholder="123456"
             />
             <Button text={loading ? 'Loading...' : 'Login with email and password'} />
             <p className="or">or</p>
@@ -175,7 +175,7 @@ const SignupSign = () => {
               label="Full Name"
               state={name}
               setState={setName}
-              placeholder="Archit"
+              placeholder="example"
             />
             <Input
               className="inputbox"
@@ -183,7 +183,7 @@ const SignupSign = () => {
               label="Email"
               state={email}
               setState={setEmail}
-              placeholder="archit@gmail.com"
+              placeholder="example@gmail.com"
             />
             <Input
               className="inputbox"
@@ -191,7 +191,7 @@ const SignupSign = () => {
               label="Password"
               state={password}
               setState={setPassword}
-              placeholder="12345"
+              placeholder="123456"
             />
             <Input
               className="inputbox"
@@ -199,7 +199,7 @@ const SignupSign = () => {
               label="Confirm Password"
               state={confirmPassword}
               setState={setConfirmPassword}
-              placeholder="12345"
+              placeholder="123456"
             />
             <Button text={loading ? 'Loading...' : 'Signup with email and password'} />
             <p className="or">or</p>

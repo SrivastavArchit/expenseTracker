@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Form, Input, Button, Progress } from 'antd';
+import { Form, Input, Button, Progress, Card } from 'antd';
+import "./style.css"
 
 const BudgetTracker = ({ transactions, budget, saveBudget }) => {
   const [form] = Form.useForm();
@@ -21,18 +22,26 @@ const BudgetTracker = ({ transactions, budget, saveBudget }) => {
   const progressPercent = Math.ceil((totalSpent / budget) * 100);
 
   return (
-    <div>
-      <Form layout="inline" form={form} onFinish={handleSubmit}>
+    <div className='budget-wrapper'>
+       <Card className=' budget-card'>
+      <div>
+        <h2 style={{fontWeight:"600"}}>Set Your Budget</h2>
+      </div>
+     
+      <Form className="budget-form" layout="inline" form={form} onFinish={handleSubmit}>
         <Form.Item label="Monthly Budget" name="budget" rules={[{ required: true, message: 'Please enter your budget' }]}>
           <Input type="number" placeholder="Enter budget" />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">Set Budget</Button>
+          <Button className='budget-btn' type="primary" htmlType="submit">Set Budget</Button>
         </Form.Item>
       </Form>
       <Progress percent={progressPercent} status={progressPercent > 100 ? 'exception' : 'active'} />
-      <p>Budget: ₹{budget}</p>
+     <div>
+       <p>Budget: ₹{budget}</p>
       <p>Spent: ₹{totalSpent}</p>
+     </div>
+     </Card>
     </div>
   );
 };

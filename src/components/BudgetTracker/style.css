@@ -1,0 +1,32 @@
+.budget-wrapper{
+    width: 92%;
+    margin: 3rem auto  3rem auto;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    
+}
+.budget-card{
+    width: 94%;
+   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;;
+    min-width: 400px;
+}
+.budget-form{
+    margin-left: 5rem;
+}
+
+.ant-progress-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-left: .3rem;
+    font-style: bold;
+}
+
+@media (max-width:720px){
+    .budget-card{
+        
+    }
+}
