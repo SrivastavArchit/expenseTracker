@@ -32,9 +32,11 @@ font-weight: 500;
 @media (max-width: 720px){
    input{
     width: 100%;
+    
    }
    .input-wrapper{
     margin: auto;
+    margin-left: 7%;
    }
 }
 

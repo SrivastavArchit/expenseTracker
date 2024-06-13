@@ -31,8 +31,8 @@ const BudgetTracker = ({ transactions, budget, saveBudget }) => {
         </Form.Item>
       </Form>
       <Progress percent={progressPercent} status={progressPercent > 100 ? 'exception' : 'active'} />
-      <p>Budget: ${budget}</p>
-      <p>Spent: ${totalSpent}</p>
+      <p>Budget: ₹{budget}</p>
+      <p>Spent: ₹{totalSpent}</p>
     </div>
   );
 };

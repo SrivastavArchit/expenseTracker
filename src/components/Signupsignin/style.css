@@ -4,6 +4,7 @@
  min-width: 400px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
    margin-top: 5rem;
+  
 }
 
 .or{
@@ -11,8 +12,16 @@
    cursor: pointer;
    font-size: .9rem;
    color: grey;
+
 }
 .inputbox{
     margin: 1rem 0rem;
     width: 100%;
+}
+
+@media (max-width: 720px){
+    .or{
+        text-align: center;
+        margin-left: 2rem;
+    }
 }

@@ -8,15 +8,15 @@ const Cards = ({ showExpenseModal, showIncomeModal, income, expense, currentBala
   return (
     <div className="row">
       <Card className='my-card' title="Current Balance" style={{ width: 300 }}>
-        <p className='amount' >${currentBalance}</p>
+        <p className='amount' >₹{currentBalance}</p>
         <Button type="primary" onClick={resetBalance}>Reset Balance</Button>
       </Card>
       <Card className='my-card' title="Total Income" style={{ width: 300 }}>
-        <p className='amount'>${income}</p>
+        <p className='amount'>₹{income}</p>
         <Button type="primary" onClick={showIncomeModal}>Add Income</Button>
       </Card>
       <Card className='my-card' title="Total Expense" style={{ width: 300 }}>
-        <p className='amount'>${expense}</p>
+        <p className='amount'>₹{expense}</p>
         <Button type="primary" onClick={showExpenseModal}>Add Expense</Button>
       </Card>
     </div>
