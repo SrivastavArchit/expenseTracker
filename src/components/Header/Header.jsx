@@ -17,7 +17,7 @@ useEffect(() => {
 const logout_func = () => {
   signOut(auth)
     .then(() => {
-      navigate('/'); // Redirect to login page after logout
+      navigate('/'); 
     })
     .catch((error) => {
       console.error('Error logging out: ', error);
@@ -25,13 +25,23 @@ const logout_func = () => {
 };
 
   return (
-    <div>
-    <div className='navbar'>
-       <p className='logo'>ExpenseTrack</p>
-
-       <p className=' logo link' onClick={logout_func}>Logout</p>
-    </div>
-    </div>
+    <div className="navbar">
+    <p className="logo">Financly.</p>
+    {user ? (
+      <p className="navbar-link" onClick={logout_func}>
+        <span style={{ marginRight: "1rem" }}>
+          <img 
+            src={user.photoURL ? user.photoURL : <p>photo</p>}
+            width={user.photoURL ? "32" : "24"}
+            style={{ borderRadius: "50%" }}
+          />
+        </span>
+       <span className='logout'>Logout</span>  
+      </p>
+    ) : (
+      <></>
+    )}
+  </div>
   )
 }
 

@@ -12,6 +12,18 @@
   font-family: "Montserrat", sans-serif;
     margin-bottom: 1rem;
     font-size: .9rem;
+    transition: all .3s ease-in;
+}
+.btn button:hover{
+    background-color: #2970FF;
+    color: white;
+    border: 2px solid white
+}
+.blue button:hover{
+    background-color: rgb(255, 255, 255);
+   
+    color: rgb(46, 107, 239);
+    border: 2px solid rgb(40, 108, 254);
 }
 .ant-card-body{
     margin: 0;

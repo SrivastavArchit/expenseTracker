@@ -14,6 +14,26 @@
     color: var(--white);
     font-weight: 500;
     padding: 1rem;
+    cursor: pointer;
+}
+.logout{
+    color: var(--white);
+    font-weight: 500;
+    padding: 1rem;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all .7s ease;
+    text-align: center;
+  
+}
+.navbar-link{
+    display: flex;
+    align-items: center;
+}
+
+.logout:hover{
+    opacity: 1;
+
 }
 .link{
     cursor: pointer;

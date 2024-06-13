@@ -42,6 +42,7 @@ const Charts = ({ sortedchart }) => {
       shape: 'diamond',
     },
     label: {
+        title:"tag",
       style: {
         fill: '#aaa',
       },
@@ -60,18 +61,21 @@ const Charts = ({ sortedchart }) => {
     colorField: 'tag',
     radius: 1,
     label: {
-      Type: 'spider',
-      labelHeight: 28,
-      content: '{name}\n{percentage}',
+      Type: 'outer',
+      content: '{name} {percentage}',
     },
-    interactions: [{ type: 'element-active' }],
-  };
+    formatter: (datum) => `${datum.tag}: ${(datum.percent * 100).toFixed(2)}%`,
+
+interactions: [{ type: 'element-active' }],
+};
+
+  let chart;
 
   return (
     <div style={{ display: "flex" }}>
       <div style={{ width: "50%" }}>
         <h2>Your Transactions Over Time</h2>
-        <Line {...lineChartConfig} />
+        <Line {...lineChartConfig} onReady={(chartInstance) => (chart = chartInstance)} />;
       </div>
       <div style={{ width: "50%" }}>
         <h2>Your Spending by Category</h2>
@@ -86,4 +90,3 @@ const Charts = ({ sortedchart }) => {
 };
 
 export default Charts;
-

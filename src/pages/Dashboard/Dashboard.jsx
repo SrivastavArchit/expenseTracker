@@ -13,6 +13,7 @@ import TransactionTable from '../../components/TransactionTable/TransactionTable
 import BudgetTracker from '../../components/BudgetTracker/BudgetTracker';
 import Charts from '../../components/Charts/Charts';
 
+
 const Dashboard = () => {
   const [user] = useAuthState(auth);
   const [loading, setLoading] = useState(false);
@@ -131,7 +132,29 @@ const Dashboard = () => {
   const sortedchart = transactions.sort((a, b) => {
     return new Date(a.date) - new Date(b.date);
   });
-  
+  const resetBalance = async () => {
+    try {
+      if (user) {
+        const q = query(collection(db, `users/${user.uid}/transactions`));
+        const querySnapshot = await getDocs(q);
+        const batch = db.batch();
+        
+        querySnapshot.docs.forEach((doc) => {
+          batch.delete(doc.ref);
+        });
+
+        await batch.commit();
+        setTransactions([]);
+        setIncome(0);
+        setExpenses(0);
+        setCurrentBalance(0);
+        toast.success("Balance Reset Successfully!");
+      }
+    } catch (e) {
+      console.error("Error resetting balance: ", e);
+      toast.error("Couldn't reset balance");
+    }
+  };
 
 
   return (
@@ -146,9 +169,10 @@ const Dashboard = () => {
         income={income} 
         expense={expense} 
         currentBalance={currentBalance}
+        resetBalance={resetBalance}
       />
          <BudgetTracker transactions={transactions} budget={budget} saveBudget={saveBudget} />
-         
+
          {transactions.length!=0?<Charts sortedchart={sortedchart}/>:<h2>no transactions</h2>}
       <AddIncomeModal
         isIncomeModalVisible={isIncomeModalVisible}
