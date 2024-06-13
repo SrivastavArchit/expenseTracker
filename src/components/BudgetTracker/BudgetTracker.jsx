@@ -30,7 +30,7 @@ const BudgetTracker = ({ transactions, budget, saveBudget }) => {
      
       <Form className="budget-form" layout="inline" form={form} onFinish={handleSubmit}>
         <Form.Item label="Monthly Budget" name="budget" rules={[{ required: true, message: 'Please enter your budget' }]}>
-          <Input type="number" placeholder="Enter budget" />
+          <Input className='budget-input' type="number" placeholder="Enter budget" />
         </Form.Item>
         <Form.Item>
           <Button className='budget-btn' type="primary" htmlType="submit">Set Budget</Button>

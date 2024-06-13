@@ -17,7 +17,9 @@
 .budget-form{
     margin-left: 5rem;
 }
-
+#budget{
+    width: 80%;
+}
 .ant-progress-text {
     font-size: 1.5rem;
     font-weight: 600;
@@ -26,7 +28,7 @@
 }
 
 @media (max-width:720px){
-    .budget-card{
-        
+    .budget-wrapper{
+        margin-left:7%;
     }
 }
