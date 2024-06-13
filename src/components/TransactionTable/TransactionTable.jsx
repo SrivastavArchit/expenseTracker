@@ -43,8 +43,8 @@ const TransactionTable = ({transaction}) => {
       )
 
       const sortedTransactions = [...filteredData].sort((a,b)=>{
-        if(sortKey==="date"){
-            return new Date(a.date) - Date(b.date);
+        if(sortKey==="name"){
+        return  a.name.localeCompare(b.name) - b.name.localeCompare(a.name)
         }
         else if(sortKey==="amount"){
             return a.amount - b.amount
@@ -64,6 +64,7 @@ const TransactionTable = ({transaction}) => {
         onChange={(e) => setsearch(e.target.value)}
         placeholder='search here'
         />
+        <h2>My Transactions</h2>
          <Select
           className="select-input"
           onChange={(value) => setTypeFilter(value)}
@@ -82,7 +83,7 @@ const TransactionTable = ({transaction}) => {
             value={sortKey}
           >
             <Radio.Button value="">No Sort</Radio.Button>
-            <Radio.Button value="date">Sort by Date</Radio.Button>
+            <Radio.Button value="name">Sort by Name</Radio.Button>
             <Radio.Button value="amount">Sort by Amount</Radio.Button>
           </Radio.Group>
       <Table dataSource={dataSource } columns={columns} />;
