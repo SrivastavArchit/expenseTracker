@@ -50,7 +50,7 @@ const Charts = ({ sortedchart }) => {
     },
     tooltip: {
       showMarkers: true,
-      shared: true,
+     
     },
   };
 
@@ -66,7 +66,7 @@ const Charts = ({ sortedchart }) => {
       content: '{name} {percentage}',
     },
     formatter: (datum) => `${datum.tag}: ${(datum.percent * 100).toFixed(2)}%`,
-    interactions: [{ type: 'element-active' }],
+    interactions: [{ Type: 'element-active' }],
   };
 
   return (

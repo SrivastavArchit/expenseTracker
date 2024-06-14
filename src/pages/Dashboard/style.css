@@ -52,6 +52,9 @@ body, html {
   }
   
   @media (max-width: 720px) {
+    .dash-wrap{
+        padding: 0;
+    }
     .my-card {
       margin: 0 auto !important;
       width: 98%;
