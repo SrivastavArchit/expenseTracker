@@ -6,7 +6,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import {auth,db,provider}  from "../../firebase"
-import { getFirestore, doc, setDoc, getDoc} from 'firebase/firestore'; // import Firestore functions
+import { getFirestore, doc, setDoc, getDoc} from 'firebase/firestore'; 
 import { set } from 'firebase/database';
 import {signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
@@ -18,7 +18,7 @@ const SignupSign = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // use navigate hook
+  const navigate = useNavigate(); 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -136,11 +136,12 @@ const SignupSign = () => {
    
   }
 
+
   return (
     <>
       {login ? (
         <div className="signup-wrap">
-          <h2>Login on Financely</h2>
+          <h2>Login on BudgetBuddy</h2>
           <form className="form" onSubmit={handleSubmit}>
             <Input
               className="inputbox"
@@ -168,7 +169,7 @@ const SignupSign = () => {
         </div>
       ) : (
         <div className="signup-wrap">
-          <h2>Signup on Financely</h2>
+          <h2>Signup on BudgetBuddy </h2>
           <form className="form" onSubmit={handleSubmit}>
             <Input
               className="inputbox"

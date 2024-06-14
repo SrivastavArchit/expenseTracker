@@ -59,7 +59,7 @@ const TransactionTable = ({transaction}) => {
         ...transaction,
       }));
   return (
-    <div>
+    <div className='tablewrap'>
         <input className='search-bar'  value={search}
         onChange={(e) => setsearch(e.target.value)}
         placeholder='Search by Name'

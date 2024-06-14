@@ -170,28 +170,30 @@ const Dashboard = () => {
         <Header />
       </div>
 
-      <Spin spinning={loading}> {/* Wrap content with Spin component */}
-        <Cards
-          showExpenseModal={showExpenseModal}
-          showIncomeModal={showIncomeModal}
-          income={income}
-          expense={expense}
-          currentBalance={currentBalance}
-          resetBalance={resetBalance}
-        />
-        <BudgetTracker transactions={transactions} budget={budget} saveBudget={saveBudget} />
-        {transactions.length !== 0 ? <Charts sortedchart={sortedchart} /> : <h2>No transactions</h2>}
-        <AddIncomeModal
-          isIncomeModalVisible={isIncomeModalVisible}
-          handleIncomeCancel={handleIncomeCancel}
-          onFinish={onFinish}
-        />
-        <AddExpenseModal
-          isExpenseModalVisible={isExpenseModalVisible}
-          handleExpenseCancel={handleExpenseCancel}
-          onFinish={onFinish}
-        />
-        <TransactionTable transaction={transactions} />
+      <Spin spinning={loading}>
+        <div className="content-container">
+          <Cards
+            showExpenseModal={showExpenseModal}
+            showIncomeModal={showIncomeModal}
+            income={income}
+            expense={expense}
+            currentBalance={currentBalance}
+            resetBalance={resetBalance}
+          />
+          <BudgetTracker transactions={transactions} budget={budget} saveBudget={saveBudget} />
+          {transactions.length !== 0 ? <Charts sortedchart={sortedchart} /> : <h2>No transactions</h2>}
+          <AddIncomeModal
+            isIncomeModalVisible={isIncomeModalVisible}
+            handleIncomeCancel={handleIncomeCancel}
+            onFinish={onFinish}
+          />
+          <AddExpenseModal
+            isExpenseModalVisible={isExpenseModalVisible}
+            handleExpenseCancel={handleExpenseCancel}
+            onFinish={onFinish}
+          />
+          <TransactionTable transaction={transactions} />
+        </div>
       </Spin>
     </div>
   );

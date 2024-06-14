@@ -4,6 +4,7 @@ import {auth} from "../../firebase"
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
+import userimg from "../assets/user.png"
 const Header = () => {
 const [user,loading] =useAuthState(auth);
 const navigate = useNavigate();
@@ -26,12 +27,12 @@ const logout_func = () => {
 
   return (
     <div className="navbar">
-    <p className="logo">Financly.</p>
+    <p className="logo">BudgetBuddy.</p>
     {user ? (
       <p className="navbar-link" onClick={logout_func}>
         <span style={{ marginRight: "1rem" }}>
           <img 
-            src={user.photoURL ? user.photoURL : <p>photo</p>}
+            src={user.photoURL ? user.photoURL : userimg}
             width={user.photoURL ? "32" : "24"}
             style={{ borderRadius: "50%" }}
           />

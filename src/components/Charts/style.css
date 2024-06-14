@@ -17,6 +17,7 @@ min-width: 400px;
 }
 @media (max-width:720px){
     .chart-wrap{
+      
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -26,8 +27,11 @@ min-width: 400px;
         margin: auto;
     }
     .chart-div{
-        width: 94%;
-        margin: 0 2% 1rem 0;
+        width: 100%;
+        
+    }
+    .dash-wrap{
+        padding: 0;
     }
 
 }

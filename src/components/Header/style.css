@@ -11,10 +11,15 @@
     top: 0;
 }
 .logo{
-    color: var(--white);
-    font-weight: 500;
+   
+  
     padding: 1rem;
     cursor: pointer;
+}
+.logo {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: rgb(240, 248, 255);
 }
 .logout{
     color: var(--white);
