@@ -38,8 +38,8 @@ const BudgetTracker = ({ transactions, budget, saveBudget }) => {
       </Form>
       <Progress percent={progressPercent} status={progressPercent > 100 ? 'exception' : 'active'} />
      <div>
-       <p>Budget: ₹{budget}</p>
-      <p>Spent: ₹{totalSpent}</p>
+       <p> <span style={{fontWeight:"500"}}>Budget: </span> <span >₹</span>{budget}</p>
+      <p><span style={{fontWeight:"500"}}>Spent:</span> ₹{totalSpent}</p>
      </div>
      </Card>
     </div>

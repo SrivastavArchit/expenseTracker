@@ -19,6 +19,7 @@
 }
 #budget{
     width: 80%;
+    max-width: 8rem;
 }
 .ant-progress-text {
     font-size: 1.5rem;
