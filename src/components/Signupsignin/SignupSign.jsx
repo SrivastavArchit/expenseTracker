@@ -1,13 +1,12 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Input from '../input/Input';
 import './style.css';
 import Button from '../button/Button';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithRedirect, getRedirectResult } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { auth, db, provider } from "../../firebase";
 import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 
 const SignupSign = () => {
   const [login, setLogin] = useState(false);
@@ -17,6 +16,23 @@ const SignupSign = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const auth = getAuth();
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result) {
+          const user = result.user;
+          createDoc(user);
+          navigate("/dashboard");
+          toast.success("Successfully logged in");
+        }
+      })
+      .catch((error) => {
+        console.error("Redirect result error:", error);
+        toast.error("Failed to login: " + error.message);
+      });
+  }, [navigate]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -97,52 +113,26 @@ const SignupSign = () => {
   const signinwithgoogle = () => {
     setLoading(true);
     const auth = getAuth();
+    const isMobile = window.innerWidth <= 768;
 
-    try {
-      const isMobile = window.innerWidth <= 768;
-
-      if (isMobile) {
-        signInWithRedirect(auth, provider);
-      } else {
-        signInWithPopup(auth, provider)
-          .then((result) => {
-            const user = result.user;
-            createDoc(user);
-            navigate("/dashboard");
-            toast.success("Successfully logged in");
-            setLoading(false);
-          })
-          .catch((error) => {
-            handleError(error);
-            setLoading(false);
-          });
-      }
-    } catch (error) {
-      handleError(error);
-      setLoading(false);
-    }
-  };
-
-  const handleError = (error) => {
-    console.error("Google sign-in error", error);
-    toast.error("Failed to login: " + error.message);
-  };
-
-  useEffect(() => {
-    const auth = getAuth();
-    getRedirectResult(auth)
-      .then((result) => {
-        if (result) {
+    if (isMobile) {
+      signInWithRedirect(auth, provider);
+    } else {
+      signInWithPopup(auth, provider)
+        .then((result) => {
           const user = result.user;
           createDoc(user);
           navigate("/dashboard");
           toast.success("Successfully logged in");
-        }
-      })
-      .catch((error) => {
-        handleError(error);
-      });
-  }, []);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Google sign-in error:", error);
+          toast.error("Failed to login: " + error.message);
+          setLoading(false);
+        });
+    }
+  };
 
   return (
     <>
@@ -176,7 +166,7 @@ const SignupSign = () => {
         </div>
       ) : (
         <div className="signup-wrap">
-          <h2>Signup on BudgetBuddy </h2>
+          <h2>Signup on BudgetBuddy</h2>
           <form className="form" onSubmit={handleSubmit}>
             <Input
               className="inputbox"
@@ -223,4 +213,3 @@ const SignupSign = () => {
 };
 
 export default SignupSign;
-
