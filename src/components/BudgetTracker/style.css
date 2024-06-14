@@ -1,7 +1,7 @@
 .budget-wrapper{
     width: 92%;
     margin: 3rem auto  3rem auto;
-    height: 40vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,5 +31,6 @@
 @media (max-width:720px){
     .budget-wrapper{
         margin-left:7%;
+        
     }
 }

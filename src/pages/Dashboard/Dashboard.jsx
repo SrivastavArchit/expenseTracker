@@ -187,7 +187,7 @@ const Dashboard = () => {
             currentBalance={currentBalance}
             resetBalance={resetBalance}
           />
-          <BudgetTracker transactions={transactions} budget={budget} saveBudget={saveBudget} />
+          <BudgetTracker className="budget" transactions={transactions} budget={budget} saveBudget={saveBudget} />
           {transactions.length !== 0 ? <Charts sortedchart={sortedchart} /> : <h2>No transactions</h2>}
           <AddIncomeModal
             isIncomeModalVisible={isIncomeModalVisible}
