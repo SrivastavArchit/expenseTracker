@@ -111,25 +111,32 @@ const Dashboard = () => {
   };
 
   async function fetchBudget() {
+    setLoading(true)
     if (user) {
       const docRef = doc(db, `users/${user.uid}/budget`, 'monthly');
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setBudget(docSnap.data().amount);
+        setLoading(false)
       } else {
         console.log("No budget set");
+        setLoading(false)
       }
     }
   }
 
   async function saveBudget(amount) {
+    setLoading(true)
     try {
+     
       await setDoc(doc(db, `users/${user.uid}/budget`, 'monthly'), { amount });
       setBudget(amount);
       toast.success("Budget Saved!");
+      setLoading(false)
     } catch (e) {
       console.error("Error saving budget: ", e);
       toast.error("Couldn't save budget");
+      setLoading(false)
     }
   }
 

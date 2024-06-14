@@ -3,6 +3,7 @@
  justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
+    
 
 }
 .chart-div{
@@ -35,4 +36,9 @@ min-width: 400px;
     }
 
 }
-
+@media (max-width:400){
+    
+    .chart-wrap{
+        max-width: 360px;
+    }
+}

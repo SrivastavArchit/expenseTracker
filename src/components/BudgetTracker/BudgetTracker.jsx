@@ -36,7 +36,7 @@ const BudgetTracker = ({ transactions, budget, saveBudget }) => {
           <Button className='budget-btn' type="primary" htmlType="submit">Set Budget</Button>
         </Form.Item>
       </Form>
-      <Progress percent={progressPercent} status={progressPercent > 100 ? 'exception' : 'active'} />
+      <Progress style={{margin:".5rem 0 0 0"}} percent={progressPercent} status={progressPercent > 100 ? 'exception' : 'active'} />
      <div>
        <p> <span style={{fontWeight:"500"}}>Budget: </span> <span >₹</span>{budget}</p>
       <p><span style={{fontWeight:"500"}}>Spent:</span> ₹{totalSpent}</p>
