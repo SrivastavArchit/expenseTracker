@@ -7,12 +7,12 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    
+    min-width: 400px;
 }
 .budget-card{
     width: 94%;
    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;;
-    min-width: 400px;
+    
 }
 .budget-form{
     margin-left: 5rem;
@@ -30,7 +30,7 @@
 
 @media (max-width:720px){
     .budget-wrapper{
-        margin-left:7%;
+        
         
     }
 }
