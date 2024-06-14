@@ -27,7 +27,11 @@ const logout_func = () => {
 
   return (
     <div className="navbar">
-    <p className="logo">BudgetBuddy.</p>
+      <div>
+      <p className="logo">BudgetBuddy.</p>
+
+      </div>
+  
     {user ? (
       <p className="navbar-link" onClick={logout_func}>
         <span style={{ marginRight: "1rem" }}>

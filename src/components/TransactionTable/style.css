@@ -23,6 +23,9 @@
     .tablewrap {
       padding: 0.5rem;
     }
+    .table{
+      margin-left: 7%;
+    }
   
     .search-bar,
     .select-input,
