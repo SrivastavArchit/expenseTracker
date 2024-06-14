@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Input from '../input/Input';
 import './style.css';
 import Button from '../button/Button';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithRedirect, getRedirectResult } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import {auth,db,provider}  from "../../firebase"
-import { getFirestore, doc, setDoc, getDoc} from 'firebase/firestore'; 
-import { set } from 'firebase/database';
-import {signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-
+import { auth, db, provider } from "../../firebase";
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 
 const SignupSign = () => {
   const [login, setLogin] = useState(false);
@@ -18,7 +16,7 @@ const SignupSign = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,7 +34,6 @@ const SignupSign = () => {
         try {
           const userCredential = await createUserWithEmailAndPassword(auth, email, password);
           const user = userCredential.user;
-          console.log(user);
           toast.success('Successfully signed-up');
           setConfirmPassword('');
           setEmail('');
@@ -63,7 +60,7 @@ const SignupSign = () => {
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        createDoc(user)
+        createDoc(user);
         toast.success('Logged in');
         navigate('/dashboard');
       } catch (error) {
@@ -73,6 +70,7 @@ const SignupSign = () => {
       toast.error('Please fill all the fields');
     }
   };
+
   const createDoc = async (user) => {
     try {
       const docRef = doc(db, 'users', user.uid);
@@ -85,7 +83,7 @@ const SignupSign = () => {
           name,
           email,
           uid: user.uid,
-          photoURL:user.photoURL ? user.photoURL : ""
+          photoURL: user.photoURL ? user.photoURL : ""
         });
         toast.success('User document created');
       }
@@ -96,46 +94,55 @@ const SignupSign = () => {
     }
   };
 
-
-  function signinwithgoogle(){
+  const signinwithgoogle = () => {
+    setLoading(true);
     const auth = getAuth();
 
-    setLoading(true)
-    try{
-      signInWithPopup(auth, provider)
+    try {
+      const isMobile = window.innerWidth <= 768;
+
+      if (isMobile) {
+        signInWithRedirect(auth, provider);
+      } else {
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            const user = result.user;
+            createDoc(user);
+            navigate("/dashboard");
+            toast.success("Successfully logged in");
+            setLoading(false);
+          })
+          .catch((error) => {
+            handleError(error);
+            setLoading(false);
+          });
+      }
+    } catch (error) {
+      handleError(error);
+      setLoading(false);
+    }
+  };
+
+  const handleError = (error) => {
+    console.error("Google sign-in error", error);
+    toast.error("Failed to login: " + error.message);
+  };
+
+  useEffect(() => {
+    const auth = getAuth();
+    getRedirectResult(auth)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        createDoc(user)
-        navigate("/dashboard")
-        toast.success("successfully logged in")
-
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-        setLoading(false)
-      }).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        toast.error("failed to login")
-        // ...
-        setLoading(false)
+        if (result) {
+          const user = result.user;
+          createDoc(user);
+          navigate("/dashboard");
+          toast.success("Successfully logged in");
+        }
+      })
+      .catch((error) => {
+        handleError(error);
       });
-    }
-    catch(e){
-    toast.error(e.message)
-    setLoading(false)
-    }
-   
-  }
-
+  }, []);
 
   return (
     <>
@@ -161,7 +168,7 @@ const SignupSign = () => {
             />
             <Button text={loading ? 'Loading...' : 'Login with email and password'} />
             <p className="or">or</p>
-            <Button onclick={ signinwithgoogle} disabled={loading} blue={true} text={loading ? 'Loading...' : 'Login with Google'} />
+            <Button onclick={signinwithgoogle} disabled={loading} blue={true} text={loading ? 'Loading...' : 'Login with Google'} />
             <p className="or" onClick={() => setLogin(false)}>
               Don't have an account? Click here to signup
             </p>
@@ -204,7 +211,7 @@ const SignupSign = () => {
             />
             <Button text={loading ? 'Loading...' : 'Signup with email and password'} />
             <p className="or">or</p>
-            <Button onclick={ signinwithgoogle}  disabled={loading} blue={true} text={loading ? 'Loading...' : 'Signup with Google'} />
+            <Button onclick={signinwithgoogle} disabled={loading} blue={true} text={loading ? 'Loading...' : 'Signup with Google'} />
             <p className="or" onClick={() => setLogin(true)}>
               Already have an account? Click here to login
             </p>
@@ -215,5 +222,5 @@ const SignupSign = () => {
   );
 };
 
-
 export default SignupSign;
+
